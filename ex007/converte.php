@@ -11,11 +11,17 @@
     <main>
         <h1>Conversor de Moedas v1.0</h1>
         <?php
-            $resultado = $_GET["valor"];
-            $converteDolar = $resultado / 5.60;
-            $format = number_format($converteDolar, 2);
-            echo "Seus R$$resultado equivalem à $$format";
-            echo "<hr><br><strong>*Cotação fixa de R$5,60</strong> informada diretamente no código";
+            $resultado = $_POST["valor"];
+            
+            if (isset($resultado) && is_numeric($resultado)){
+                $converteDolar = $resultado / 5.60;
+                $format = number_format($converteDolar, 2);
+                echo "Seus R$$resultado equivalem à $$format";
+                echo "<hr><br><strong>*Cotação fixa de R$5,60</strong> informada diretamente no código";
+            } else {
+                echo "valor invalido";
+            }
+
         ?>
         <br>
         <button><a href="index.html">Voltar</a></button>
