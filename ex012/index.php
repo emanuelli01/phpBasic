@@ -9,6 +9,7 @@
 <body>
     <?php
         $salario = $_POST['salario'] ?? 1380;
+        $salMinimo = 1380;
     ?>
     <main>
         <h1>Informe seu salário</h1>
@@ -22,9 +23,10 @@
 
     <section>
         <h2>Resultado Final</h2>
-        <?php        
-            $resultado = $salario / 1380;
-            $resto = $salario % 1380;
+        <?php
+            
+            $resultado = $salario / $salMinimo;
+            $resto = $salario % $salMinimo;
 
             echo "<p>Quem recebe um salário de $salario ganha ".intval($resultado)." salários mínimos + R$ $resto.</p>";
         ?>
