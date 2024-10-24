@@ -8,15 +8,30 @@
 </head>
 <body>
     <main>
+        <?php
+            $pct = $_POST['porcentagem'] ?? 0;
+            $preco = $_POST['preco'] ?? 0;     
+        ?>
         <h1>Reajuste de Preços</h1>
-        <form action="<?$_SERVER['PHP_SELF']?>" method="post">
+        <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
             <label for="preco">Preço do Produto (R$)</label>
             <input type="number" name="preco" id="preco">
             <label for="porcentagem">Qual será o percentual de reajuste? <strong><span id="p">?</span>%</strong></label>
             <input type="range" name="porcentagem" id="porcentagem" oninput="mudaValor()">
+            <input type="submit" value="Calcular">
         </form>
     </main>
-    <section></section>
+    <section>
+        <h1>Valor final</h1>
+        <form id='vfinal'>
+            <?php
+                $decimal = $pct / 100;            
+                $valor = $preco * $decimal;
+                $rFinal = $preco + $valor; 
+                echo "<p>O produto que custava R$$preco, com <strong>$pct% de aumento</strong> vai passar a custar R$<strong>".number_format($rFinal, 2, ",", ".")."</strong></p>";
+            ?>
+        </form>
+    </section>
     <script>
         function mudaValor(){
             p.innerText = porcentagem.value;
